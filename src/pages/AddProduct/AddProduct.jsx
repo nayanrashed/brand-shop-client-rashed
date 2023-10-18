@@ -1,11 +1,123 @@
-
-
 const AddProduct = () => {
-    return (
-        <div>
-            <h2 className="">Add Product Pages</h2>
+  const handleAddProduct = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const brand = form.brand.value;
+    const type = form.type.value;
+    const price = form.price.value;
+    const photo = form.photo.value;
+    const rating = form.rating.value;
+    const description = form.description.value;
+    const newProduct = { name, brand, type, price, photo, rating, description };
+    console.log(newProduct);
+  };
+  return (
+    <div className="bg-pink-100 p-24">
+      <form onSubmit={handleAddProduct}>
+        <div className="md:flex gap-4">
+          <div className="form-control md:w-1/2">
+            <label className="label">
+              <span className="label-text font-semibold">Name</span>
+            </label>
+            <label className="">
+              <input
+                type="text"
+                placeholder="Product Name"
+                name="name"
+                className="input input-bordered w-full"
+              />
+            </label>
+          </div>
+          <div className="form-control md:w-1/2">
+            <label className="label">
+              <span className="label-text font-semibold">Brand Name</span>
+            </label>
+            <label className="">
+              <input
+                type="text"
+                placeholder="Brand Name"
+                name="brand"
+                className="input input-bordered w-full"
+              />
+            </label>
+          </div>
         </div>
-    );
+        <div className="md:flex gap-4">
+          <div className="form-control md:w-1/2">
+            <label className="label">
+              <span className="label-text font-semibold">Type</span>
+            </label>
+            <label className="">
+              <input
+                type="text"
+                placeholder="Product Type"
+                name="type"
+                className="input input-bordered w-full"
+              />
+            </label>
+          </div>
+          <div className="form-control md:w-1/2">
+            <label className="label">
+              <span className="label-text font-semibold">Price</span>
+            </label>
+            <label className="">
+              <input
+                type="text"
+                placeholder="Price"
+                name="price"
+                className="input input-bordered w-full"
+              />
+            </label>
+          </div>
+        </div>
+        <div className="md:flex gap-4">
+          <div className="form-control md:w-1/2">
+            <label className="label">
+              <span className="label-text font-semibold">Photo URL</span>
+            </label>
+            <label className="">
+              <input
+                type="text"
+                placeholder="Photo URL"
+                name="photo"
+                className="input input-bordered w-full"
+              />
+            </label>
+          </div>
+          <div className="form-control md:w-1/2">
+            <label className="label">
+              <span className="label-text font-semibold">Rating</span>
+            </label>
+            <label className="">
+              <input
+                type="text"
+                placeholder="Rating"
+                name="rating"
+                className="input input-bordered w-full"
+              />
+            </label>
+          </div>
+        </div>
+        <div className="mb-8">
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text font-semibold">Description</span>
+            </label>
+            <label className="">
+              <input
+                type="text"
+                placeholder="Product Description"
+                name="description"
+                className="input input-bordered w-full"
+              />
+            </label>
+          </div>
+        </div>
+        <input className="btn btn-block" type="submit" value="Add Product" />
+      </form>
+    </div>
+  );
 };
 
 export default AddProduct;

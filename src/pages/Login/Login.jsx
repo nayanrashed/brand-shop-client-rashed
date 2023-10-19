@@ -29,9 +29,19 @@ const Login = () => {
           icon: 'success',
           confirmButtonText: 'Cool'
         })
+        //navigate After Login
+        navigate(location?.state ? location.state:'/')
+        
       })
       .catch((error) => {
         console.error(error);
+        setError(error.message);
+        Swal.fire({
+          title: 'Error!!!',
+          text: 'Wrong Email or Password',
+          icon: 'error',
+          confirmButtonText: 'Close'
+        })
       });
   };
 
@@ -79,7 +89,7 @@ const Login = () => {
           </label>
         </div>
         {
-          //   error && <p className="text-red-400">{error}</p>
+            error && <p className="text-red-400">{error}</p>
         }
         <div className="form-control mt-6">
           <button className="btn btn-primary">Login</button>

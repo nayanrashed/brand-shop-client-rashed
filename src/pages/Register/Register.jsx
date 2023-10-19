@@ -1,9 +1,13 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { user, createUser } = useContext(AuthContext);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const [registrationError, setRegistrationError] = useState("");
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -13,14 +17,40 @@ const Register = () => {
     const photo = form.photo.value;
     const password = form.password.value;
     console.log(name, email, photo, password);
-    //create User
-    createUser(email, password)
-      .then((result) => {
-        console.log(result);
-      })
-      .then((error) => {
-        console.error(error);
-      });
+
+    setRegistrationError("");
+    setError("");
+
+    if (!/^(?=.*?[A-Z])(?=.*?[#?!@$%^&*-]).{6,}$/.test(password)) {
+      setError(
+        "Your password should have at least 6 characters with at least one capital letter and one special character"
+      );
+    } else {
+      setError("");
+      //create User
+      createUser(email, password)
+        .then((result) => {
+          console.log(result);
+          e.target.reset();
+          navigate("/");
+          Swal.fire({
+            title: "Success",
+            text: "Registration Successful",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+        })
+        .then((error) => {
+          console.error(error);
+          setRegistrationError(error.message);
+          Swal.fire({
+            title: "Error!!!",
+            text: "Wrong Email or Password",
+            icon: "error",
+            confirmButtonText: "Close",
+          });
+        });
+    }
   };
   return (
     <div>
@@ -59,7 +89,6 @@ const Register = () => {
               type="text"
               placeholder="Photo URL"
               className="input input-bordered"
-              required
               name="photo"
             />
           </div>
@@ -80,9 +109,7 @@ const Register = () => {
               </a>
             </label>
           </div>
-          {
-            //   error && <p className="text-red-400">{error}</p>
-          }
+          {error && <p className="text-red-400">{error}</p>}
           <div className="form-control mt-6">
             <button className="btn btn-primary">Register</button>
           </div>

@@ -12,7 +12,7 @@ const AddProduct = () => {
     const rating = form.rating.value;
     const description = form.description.value;
     const newProduct = { name, brand, type, price, photo, rating, description };
-    console.log(newProduct);
+    // console.log(newProduct);
     //sending data to the server
     fetch('http://localhost:5000/products',{
         method:'POST',
@@ -23,7 +23,7 @@ const AddProduct = () => {
     })
     .then(res=>res.json())
     .then(data=>{
-        console.log(data);
+        // console.log(data);
         if(data.insertedId){
             Swal.fire({
                 title: 'Success',

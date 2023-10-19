@@ -1,13 +1,50 @@
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
+  const { signIn,signInWithGoogle } = useContext(AuthContext);
+
+  const navigate = useNavigate(); 
+  const location= useLocation();
+
+  const [error, setError]= useState('');
+
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
+
+    setError('');
+
+    signIn(email, password)
+      .then((result) => {
+        console.log(result.user);
+        Swal.fire({
+          title: 'Success',
+          text: 'Login Successful',
+          icon: 'success',
+          confirmButtonText: 'Cool'
+        })
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
+
+  const handleGoogleSignIn=()=>{
+    signInWithGoogle()
+    .then(result=>{
+      navigate('/');
+      console.log(result.user)
+    })
+    .catch(error=>{
+      console.error(error)
+    })
+  }
   return (
     <div className="bg-gray-200 px-16 py-4 my-4 rounded-lg">
       <h2 className="text-2xl text-center my-4">Please Login</h2>
@@ -50,7 +87,7 @@ const Login = () => {
       </form>
       <p className="text-center">or</p>
       <p className="text-center">
-        Login with <button className="btn btn-outline btn-sm">Google</button>
+        Login with <button onClick={handleGoogleSignIn} className="btn btn-outline btn-sm">Google</button>
       </p>
 
       <p className="text-center">

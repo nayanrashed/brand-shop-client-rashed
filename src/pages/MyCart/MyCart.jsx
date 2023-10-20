@@ -1,11 +1,23 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const MyCart = () => {
   const myCart = useLoaderData();
+  const { user } = useContext(AuthContext);
+
   const [cartProducts, setCartProducts] = useState(myCart);
-  console.log(cartProducts);
+
+  useEffect(() => {
+    const userEmail = user.email;
+    const cartByEmailId = cartProducts.filter(
+      (cartProduct) => cartProduct.userEmail === userEmail
+    );
+    setCartProducts(cartByEmailId);
+  }, []);
+
+  // console.log(cartProducts);
 
   const handleDelete = (_id) => {
     // console.log(_id);
@@ -76,7 +88,7 @@ const MyCart = () => {
                 <th>
                   <button
                     onClick={() => handleDelete(product._id)}
-                    className="btn btn-ghost btn-xs"
+                    className="btn btn-ghost btn-xs bg-lime-300"
                   >
                     Delete
                   </button>

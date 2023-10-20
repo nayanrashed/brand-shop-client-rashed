@@ -40,7 +40,7 @@ const UpdateProduct = () => {
   };
   return (
     <div>
-      <div className="bg-pink-100 p-24">
+      <div className="bg-pink-100 px-4 py-6 md:px-24 my-6">
         <form onSubmit={handleUpdateProduct}>
           <div className="md:flex gap-4">
             <div className="form-control md:w-1/2">

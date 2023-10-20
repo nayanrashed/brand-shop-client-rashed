@@ -6,7 +6,7 @@ import logo from "../../../assets/logo.png";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  console.log(user);
+  // console.log(user);
   const handleSignOut = () => {
     logOut().then().catch();
   };
@@ -31,7 +31,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="">
+    <div className="shadow-lg shadow-lime-200 mb-4">
       {/* top nav bar */}
       <div className="bg-gray-300 flex justify-between items-center">
         <div className="form-control">

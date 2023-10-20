@@ -1,5 +1,6 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import ProductCard from "./ProductCard";
+import AdvCarousel from "./AdvCarousel";
 
 const BrandDetails = () => {
   const products = useLoaderData();
@@ -9,54 +10,29 @@ const BrandDetails = () => {
   const brandProducts = products.filter(
     (product) => brandName == product.brand
   );
-  
+  const itemNumber = brandProducts.length;
+  // console.log(itemNumber);
+
   // console.log(brandProducts);
   // console.log(products);
   return (
-    <div className="w-full h-[70vh]">
-      <h2 className="text-3xl text-center">{brandName}</h2>
-      <div>
-        <div className="carousel h-full md:w-3/4 rounded-md shadow-lg shadow-sky-300">
-          <div id="slide1" className="carousel-item relative w-full">
-            <img src='' className="w-full" />
-            <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-              <a href="#slide3" className="btn btn-circle">
-                ❮
-              </a>
-              <a href="#slide2" className="btn btn-circle">
-                ❯
-              </a>
+    <div className="w-full">
+      <AdvCarousel></AdvCarousel>
+      <h2 className="text-3xl text-center font-semibold my-4 bg-pink-200 py-2 rounded-md">{brandName}</h2>
+      
+        {itemNumber ? (
+          <><div className="grid md:grid-cols-2 gap-4 mb-8">
+            {brandProducts.map((product) => (
+              <ProductCard key={product._id} product={product}></ProductCard>
+            ))}
             </div>
-          </div>
-          <div id="slide2" className="carousel-item relative w-full">
-            <img src='' className="w-full" />
-            <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-              <a href="#slide1" className="btn btn-circle">
-                ❮
-              </a>
-              <a href="#slide3" className="btn btn-circle">
-                ❯
-              </a>
-            </div>
-          </div>
-          <div id="slide3" className="carousel-item relative w-full">
-            <img src='' className="w-full" />
-            <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-              <a href="#slide2" className="btn btn-circle">
-                ❮
-              </a>
-              <a href="#slide1" className="btn btn-circle">
-                ❯
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="grid md:grid-cols-2 gap-4 mb-4">
-        {brandProducts.map((product) => (
-          <ProductCard key={product._id} product={product}></ProductCard>
-        ))}
-      </div>
+          </>
+        ) : (
+          <>
+            <div className="m-6 w-full"><p className="text-2xl text-center">Products Not Found</p></div>
+          </>
+        )}
+      
     </div>
   );
 };

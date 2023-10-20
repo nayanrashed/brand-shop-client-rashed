@@ -29,7 +29,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/mycart",
-        element: <MyCart></MyCart>,
+        element: <PrivateRoute><MyCart></MyCart></PrivateRoute>,
         loader:()=>fetch('http://localhost:5000/mycart')
         
       },
@@ -43,21 +43,21 @@ const router = createBrowserRouter([
       },
       {
         path:'/myaccount',
-        element:<MyAccount></MyAccount>,
+        element:<PrivateRoute><MyAccount></MyAccount></PrivateRoute>,
       },
       {
         path:'/branddeatils/:brandName',
-        element:<BrandDetails></BrandDetails>,
+        element:<PrivateRoute><BrandDetails></BrandDetails></PrivateRoute>,
         loader:()=>fetch('http://localhost:5000/products')
       },
       {
         path:'/updateproduct/:id',
-        element:<UpdateProduct></UpdateProduct>,
+        element:<PrivateRoute><UpdateProduct></UpdateProduct></PrivateRoute>,
         loader:({params})=>fetch(`http://localhost:5000/products/${params.id}`)
       },
       {
         path: 'products/:id',
-        element:<ProductDetails></ProductDetails>,
+        element:<PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>,
         loader:({params})=>fetch(`http://localhost:5000/products/${params.id}`)
       }
     ],

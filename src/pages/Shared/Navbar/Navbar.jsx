@@ -1,9 +1,12 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
+import avatar from "../../../assets/avatar.png";
+import logo from "../../../assets/logo.png";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  console.log(user);
   const handleSignOut = () => {
     logOut().then().catch();
   };
@@ -29,15 +32,30 @@ const Navbar = () => {
   );
   return (
     <div className="">
+      {/* top nav bar */}
       <div className="bg-gray-300 flex justify-between items-center">
         <div className="form-control">
           <label className="label cursor-pointer">
-            <span className="label-text px-2">Remember me</span>
-            <input type="checkbox" className="toggle" checked />
+            <span className="label-text px-2">Dark Mode</span>
+            <input type="checkbox" className="toggle" />
           </label>
         </div>
-        <div className="px-2">
+        <div className="px-2 flex items-center gap-2">
           <NavLink to="/myaccount">My Account</NavLink>
+          {
+            user&&(<p className="hidden md:inline md:text-lg border-x-2 px-1">{user?.email}</p>)
+          }
+          {user?.photoURL ? (
+            <img
+              className="rounded-full md:w-8 w-6"
+              src={user?.photoURL}
+              alt=""
+            />
+          ) : (
+            user && (
+              <img className="rounded-full w-6 md:w-8" src={avatar} alt="" />
+            )
+          )}
           {user ? (
             <button onClick={handleSignOut} className="btn btn-sm">
               Sign Out
@@ -49,6 +67,7 @@ const Navbar = () => {
           )}
         </div>
       </div>
+      {/* bottom nav bar */}
       <div className="navbar bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
@@ -75,7 +94,9 @@ const Navbar = () => {
               {navLinks}
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+          <Link>
+            <img className="w-16 h-10 md:w-24 md:h-14" src={logo} alt="" />
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navLinks}</ul>

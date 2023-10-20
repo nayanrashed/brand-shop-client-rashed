@@ -133,7 +133,7 @@ const UpdateProduct = () => {
             </div>
           </div>
           <input
-            className="btn btn-block mt-4"
+            className="btn btn-block mt-4 bg-lime-400"
             type="submit"
             value="Update Product"
           />

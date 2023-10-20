@@ -55,8 +55,8 @@ const Banner = () => {
         </div>
       </div>
 
-      <div className="hidden md:grid md:w-1/4 rounded-md shadow-lg shadow-sky-300">
-        <div className="md:h-[70vh] carousel carousel-vertical">
+      <div className="hidden md:grid md:w-1/4 shadow-lg shadow-sky-300">
+        <div className="md:h-[70vh] carousel carousel-vertical rounded-md">
           <div className="carousel-item h-full">
             <img src={sb1} />
           </div>

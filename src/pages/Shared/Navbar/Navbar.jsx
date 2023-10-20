@@ -1,10 +1,24 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import avatar from "../../../assets/avatar.png";
 import logo from "../../../assets/logo.png";
 
 const Navbar = () => {
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+
+  const handleMode = () => {
+    setTheme(theme==="dark"?"light":"dark")
+  };
+
   const { user, logOut } = useContext(AuthContext);
   // console.log(user);
   const handleSignOut = () => {
@@ -31,20 +45,25 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="shadow-lg shadow-lime-200 mb-4">
+    <div className="shadow-lg shadow-lime-200">
       {/* top nav bar */}
-      <div className="bg-gray-300 flex justify-between items-center">
+      <div className="bg-gray-300 flex justify-between items-center dark:bg-zinc-800">
         <div className="form-control">
           <label className="label cursor-pointer">
-            <span className="label-text px-2">Dark Mode</span>
-            <input type="checkbox" className="toggle" />
+            {
+              theme==="dark"?<span className="label-text px-2 dark:text-white">Dark Mode</span>:<span className="label-text px-2">Light Mode</span>
+            }
+            {/* <span className="label-text px-2">Dark Mode</span> */}
+            <input onClick={handleMode} type="checkbox" className="toggle" />
           </label>
         </div>
-        <div className="px-2 flex items-center gap-2">
+        <div className="px-2 flex items-center gap-2 dark:text-white">
           <NavLink to="/myaccount">My Account</NavLink>
-          {
-            user&&(<p className="hidden md:inline md:text-lg border-x-2 px-1">{user?.email}</p>)
-          }
+          {user && (
+            <p className="hidden md:inline md:text-lg border-x-2 px-1">
+              {user?.email}
+            </p>
+          )}
           {user?.photoURL ? (
             <img
               className="rounded-full md:w-8 w-6"

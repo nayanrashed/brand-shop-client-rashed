@@ -1,9 +1,28 @@
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const MyCart = () => {
   const myCart = useLoaderData();
   const [cartProducts, setCartProducts] = useState(myCart);
+  console.log(cartProducts);
+
+  const handleDelete = (_id) => {
+    // console.log(_id);
+    fetch(`http://localhost:5000/mycart/${_id}`,{
+      method:'DELETE',
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      if(data.deletedCount>0){
+        console.log('deleted successfully');
+        const remainingProducts = cartProducts.filter(cartProduct=>cartProduct._id !==_id)
+        setCartProducts(remainingProducts); 
+      }
+    })
+    
+  };
+
   return (
     <div>
       <h2>Products in My Cart:{cartProducts.length}</h2>
@@ -38,12 +57,15 @@ const MyCart = () => {
                     </div>
                   </div>
                 </td>
-                <td>
-                  {product.brand}
-                </td>
+                <td>{product.brand}</td>
                 <td>{product.price}</td>
                 <th>
-                  <button className="btn btn-ghost btn-xs">Delete</button>
+                  <button
+                    onClick={() => handleDelete(product._id)}
+                    className="btn btn-ghost btn-xs"
+                  >
+                    Delete
+                  </button>
                 </th>
               </tr>
             ))}

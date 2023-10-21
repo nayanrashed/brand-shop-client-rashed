@@ -30,7 +30,7 @@ const router = createBrowserRouter([
       {
         path: "/mycart",
         element: <PrivateRoute><MyCart></MyCart></PrivateRoute>,
-        loader:()=>fetch('https://brand-shop-server-rashed-ek9o0irxz-rashed-nayans-projects.vercel.app/mycart')
+        loader:()=>fetch('https://brand-shop-server-rashed-8aqkjxqgb-rashed-nayans-projects.vercel.app/mycart')
         
       },
       {
@@ -48,17 +48,17 @@ const router = createBrowserRouter([
       {
         path:'/branddeatils/:brandName',
         element:<BrandDetails></BrandDetails>,
-        loader:()=>fetch('https://brand-shop-server-rashed-ek9o0irxz-rashed-nayans-projects.vercel.app/products')
+        loader:()=>fetch('https://brand-shop-server-rashed-8aqkjxqgb-rashed-nayans-projects.vercel.app/products')
       },
       {
         path:'/updateproduct/:id',
         element:<PrivateRoute><UpdateProduct></UpdateProduct></PrivateRoute>,
-        loader:({params})=>fetch(`https://brand-shop-server-rashed-ek9o0irxz-rashed-nayans-projects.vercel.app/products/${params.id}`)
+        loader:({params})=>fetch(`https://brand-shop-server-rashed-8aqkjxqgb-rashed-nayans-projects.vercel.app/products/${params.id}`)
       },
       {
         path: 'products/:id',
         element:<PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>,
-        loader:({params})=>fetch(`https://brand-shop-server-rashed-ek9o0irxz-rashed-nayans-projects.vercel.app/products/${params.id}`)
+        loader:({params})=>fetch(`https://brand-shop-server-rashed-8aqkjxqgb-rashed-nayans-projects.vercel.app/products/${params.id}`)
       }
     ],
   },

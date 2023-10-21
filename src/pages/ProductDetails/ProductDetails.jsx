@@ -15,7 +15,7 @@ const ProductDetails = () => {
     const addedProduct ={productId,userEmail,name,brand,price,photo}
     // console.log(addedProduct);
 
-    fetch('https://brand-shop-server-rashed-ek9o0irxz-rashed-nayans-projects.vercel.app/mycart',{
+    fetch('https://brand-shop-server-rashed-8aqkjxqgb-rashed-nayans-projects.vercel.app/mycart',{
       method:"POST",
       headers:{
         "content-type":"application/json",        

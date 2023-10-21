@@ -56,9 +56,9 @@ const Login = () => {
     })
   }
   return (
-    <div className="bg-gray-200 px-16 py-4 my-4 rounded-lg">
+    <div className="bg-gray-200 px-16 py-4 my-4 rounded-lg shadow-md shadow-lime-200 md:w-3/4 mx-auto">
       <h2 className="text-2xl text-center my-4">Please Login</h2>
-      <form onSubmit={handleLogin} className="md:w-1/2 mx-auto my-4">
+      <form onSubmit={handleLogin} className="md:w-3/4 mx-auto my-4">
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>
@@ -92,7 +92,7 @@ const Login = () => {
             error && <p className="text-red-400">{error}</p>
         }
         <div className="form-control mt-6">
-          <button className="btn btn-primary">Login</button>
+          <button className="btn btn-block btn-outline bg-lime-300">Login</button>
         </div>
       </form>
       <p className="text-center">or</p>

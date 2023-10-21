@@ -6,7 +6,7 @@ import support from "../../assets/people.png";
 const Offers = () => {
   return (
     <div className="my-6 ">
-        <h2 className="text-center text-3xl mb-4 font-semibold dark:text-white">Our features</h2>
+        <h2 className="text-center text-2xl mb-4 font-semibold dark:text-white">Featuring</h2>
       <div className="grid  md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-6 ">
         <div className="flex shadow-md shadow-lime-100 mx-auto w-64 h-24 rounded-lg bg-orange-700">
           <img className="w-1/3 p-2 object-fill" src={freeShipping} alt="" />

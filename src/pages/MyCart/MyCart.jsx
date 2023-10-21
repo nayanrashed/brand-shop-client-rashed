@@ -31,7 +31,7 @@ const MyCart = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/mycart/${_id}`, {
+        fetch(`https://brand-shop-server-rashed-ek9o0irxz-rashed-nayans-projects.vercel.app/mycart/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -51,7 +51,7 @@ const MyCart = () => {
 
   return (
     <div>
-      <h2>Products in My Cart:{cartProducts.length}</h2>
+      <h2 className="text-xl font-semibold text-center my-3 ">Number of products added to My Cart: {cartProducts.length}</h2>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

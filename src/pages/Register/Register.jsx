@@ -9,14 +9,15 @@ const Register = () => {
   const navigate = useNavigate();
   const [registrationError, setRegistrationError] = useState("");
 
+  console.log(user);
+
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
-    const email = form.email.value;
-    const photo = form.photo.value;
+    const email = form.email.value;    
     const password = form.password.value;
-    console.log(name, email, photo, password);
+    console.log(name, email, password);
 
     setRegistrationError("");
     setError("");
@@ -54,9 +55,9 @@ const Register = () => {
   };
   return (
     <div>
-      <div className="bg-gray-200 px-16 py-4 my-4 rounded-lg">
+      <div className="bg-gray-200 px-16 py-4 my-4 rounded-lg shadow-md shadow-lime-200 md:w-3/4 mx-auto">
         <h2 className="text-2xl text-center my-4">Please Register</h2>
-        <form onSubmit={handleRegister} className="md:w-1/2 mx-auto my-4">
+        <form onSubmit={handleRegister} className="md:w-3/4 mx-auto my-4">
           <div className="form-control">
             <label className="label">
               <span className="label-text">Name</span>
@@ -81,17 +82,7 @@ const Register = () => {
               name="email"
             />
           </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Photo URL</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Photo URL"
-              className="input input-bordered"
-              name="photo"
-            />
-          </div>
+
           <div className="form-control">
             <label className="label">
               <span className="label-text">Password</span>
@@ -111,7 +102,9 @@ const Register = () => {
           </div>
           {error && <p className="text-red-400">{error}</p>}
           <div className="form-control mt-6">
-            <button className="btn btn-primary">Register</button>
+            <button className="btn btn-block btn-outline bg-lime-300">
+              Register
+            </button>
           </div>
         </form>
 
